@@ -74,11 +74,23 @@
 <div class="container">
     <div class="form-container">
         <h2 class="text-center mt-5">Update Movie</h2>
-        <form action="${pageContext.request.contextPath}/movieServlet?id=<%=movie.getId()%>" method="post">
+        <form action="${pageContext.request.contextPath}/movieServlet?id=<%=movie.getId()%>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="function" value="update">
             <div class="form-group">
                 <label for="name">Movie Name:</label>
-                <input value="<%=movie.getName()%>" type="text" id="name" name="name" placeholder="Enter movie name" required class="form-control">
+                <input value="<%=movie.getName()%>" type="text" id="name" name="name" placeholder="Enter movie name"
+                       required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="name">Movie Photo:</label>
+                <input type="file" id="photo" name="photo" required class="form-control">
+                <%if (movie.getAttachment() == null) {%>
+                <img width="60" src="photo.jpeg"
+                     alt="">
+                <%} else {%>
+                <img width="60" src="${pageContext.request.contextPath}/file?id=<%=movie.getAttachment().getId()%>"
+                     alt="">
+                <%}%>
             </div>
             <div class="form-group">
                 <input type="submit" value="Update Movie" class="btn btn-primary btn-block">

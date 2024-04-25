@@ -95,7 +95,7 @@
 
 <div class="container">
     <div class="form-container">
-        <h2 class="text-center mb-4">Update Session</h2>
+        <h2 class="text-center mt-5">Update Session</h2>
         <form action="${pageContext.request.contextPath}/session-servlet?id=<%=chosenSession.getId()%>" method="post">
             <input type="hidden" name="function" value="update">
             <div class="form-group">

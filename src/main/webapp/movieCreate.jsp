@@ -67,10 +67,14 @@
 <div class="container">
     <div class="form-container">
         <h2 class="text-center mb-4">Add Movie</h2>
-        <form action="${pageContext.request.contextPath}/movieServlet" method="post">
+        <form action="${pageContext.request.contextPath}/movieServlet" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Movie Name:</label>
                 <input type="text" id="name" name="name" placeholder="Enter movie name" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="name">Movie Photo:</label>
+                <input type="file" id="photo" name="photo" required class="form-control">
             </div>
             <div class="form-group">
                 <input type="submit" value="Add Movie" class="btn btn-primary btn-block">

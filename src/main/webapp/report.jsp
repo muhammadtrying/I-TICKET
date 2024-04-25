@@ -1,5 +1,3 @@
-<%@ page import="uz.muhammadtrying.iticketproject.repo.HallRepo" %>
-<%@ page import="uz.muhammadtrying.iticketproject.entity.Hall" %>
 <%@ page import="java.util.List" %>
 <%@ page import="uz.muhammadtrying.iticketproject.repo.PurchaseRepo" %>
 <%@ page import="uz.muhammadtrying.iticketproject.entity.Purchase" %>
@@ -41,8 +39,8 @@
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy hh:mm a");
     PurchaseRepo purchaseRepo = new PurchaseRepo();
     List<Purchase> purchases = purchaseRepo.findAll();
-    if(){
-        purchases = ;
+    if (request.getAttribute("filteredPurchases") != null) {
+        purchases = (List<Purchase>) request.getAttribute("filteredPurchases");
     }
     int i = 1;
 %>
@@ -51,15 +49,21 @@
 
 <div class="table-container">
     <div class="container">
+        <a href="${pageContext.request.contextPath}/admin.jsp">Back</a>
         <table class="table table-striped">
             <thead>
             <tr>
                 <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=all">#</a></th>
                 <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=hall">Hall</a></th>
-                <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=movie">Movie</a></th>
-                <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=sessionTime">Session Time</a></th>
-                <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=price">Price</a></th>
-                <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=purchasedAt">Purchased At</a></th>
+                <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=movie">Movie</a>
+                </th>
+                <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=sessionTime">Session
+                    Time</a></th>
+                <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=price">Price</a>
+                </th>
+                <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=user">User</a></th>
+                <th scope="col"><a href="${pageContext.request.contextPath}/filter-purchases?filter=purchasedAt">Purchased
+                    At</a></th>
             </tr>
             </thead>
             <tbody>
@@ -74,6 +78,8 @@
                 <td><%=purchase.getSessionTime()%>
                 </td>
                 <td><%=purchase.getPrice()%>
+                </td>
+                <td><%=purchase.getUser().getUsername()%>
                 </td>
                 <td><%=purchase.getPurchaseDate().format(formatter)%>
                 </td>

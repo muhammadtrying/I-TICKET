@@ -40,16 +40,6 @@ public class DataLoader implements ServletContextListener {
         entityManager.persist(hall3);
         entityManager.persist(hall4);
 
-        for (int i = 1; i <= 12; i++) {
-            Seat seat1 = Seat.builder().seatNumber(String.valueOf(i)).status(Status.FREE).hall(hall1).build();
-            Seat seat2 = Seat.builder().seatNumber(String.valueOf(i)).status(Status.FREE).hall(hall2).build();
-            Seat seat3 = Seat.builder().seatNumber(String.valueOf(i)).status(Status.FREE).hall(hall3).build();
-            Seat seat4 = Seat.builder().seatNumber(String.valueOf(i)).status(Status.FREE).hall(hall4).build();
-            entityManager.persist(seat1);
-            entityManager.persist(seat2);
-            entityManager.persist(seat3);
-            entityManager.persist(seat4);
-        }
 
         Movie movie1 = Movie.builder().name("INTERSTELLAR").build();
         Movie movie2 = Movie.builder().name("OPPENHEIMER").build();
@@ -68,7 +58,16 @@ public class DataLoader implements ServletContextListener {
         entityManager.persist(session2);
         entityManager.persist(session3);
         entityManager.persist(session4);
-
+        for (int i = 1; i <= 12; i++) {
+            Seat seat1 = Seat.builder().seatNumber(String.valueOf(i)).status(Status.FREE).session(session1).build();
+            Seat seat2 = Seat.builder().seatNumber(String.valueOf(i)).status(Status.FREE).session(session2).build();
+            Seat seat3 = Seat.builder().seatNumber(String.valueOf(i)).status(Status.FREE).session(session3).build();
+            Seat seat4 = Seat.builder().seatNumber(String.valueOf(i)).status(Status.FREE).session(session4).build();
+            entityManager.persist(seat1);
+            entityManager.persist(seat2);
+            entityManager.persist(seat3);
+            entityManager.persist(seat4);
+        }
         entityManager.getTransaction().commit();
     }
 }

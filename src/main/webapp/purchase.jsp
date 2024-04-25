@@ -4,6 +4,7 @@
 <%@ page import="uz.muhammadtrying.iticketproject.entity.Hall" %>
 <%@ page import="uz.muhammadtrying.iticketproject.entity.Session" %>
 <%@ page import="uz.muhammadtrying.iticketproject.repo.SessionRepo" %>
+<%@ page import="uz.muhammadtrying.iticketproject.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,7 +17,7 @@
     SessionRepo sessionRepo = new SessionRepo();
     UUID chosenSeatId = UUID.fromString(request.getParameter("id"));
     Seat chosenSeat = seatRepo.findById(chosenSeatId);
-    Hall hall = chosenSeat.getHall();
+    User user = (User) session.getAttribute("currentUser");
     Session chosenSession = sessionRepo.findById(UUID.fromString(request.getParameter("sessionId")));
 %>
 
@@ -34,7 +35,7 @@
                     <h5 class="card-title">Seat Information</h5>
                     <p class="card-text">Selected Seat Number: <%= chosenSeat.getSeatNumber() %>
                     </p>
-                    <p class="card-text">Hall: <%= hall.getName() %>
+                    <p class="card-text">Hall: <%= chosenSeat.getSession().getHall().getName() %>
                     </p>
                     <p class="card-text">Movie: <%= chosenSession.getMovie().getName() %>
                     </p>
@@ -45,7 +46,8 @@
                         <input type="hidden" name="chosenSessionId" value="<%=chosenSession.getId()%>">
                         <div class="form-group">
                             <label for="customerName">Your Name</label>
-                            <input type="text" class="form-control" id="customerName" name="username" required>
+                            <input value="<%=user.getUsername()%>" type="text" class="form-control"
+                                   id="customerName" name="username" required>
                         </div>
                         <div class="form-group">
                             <label for="customerEmail">Your Email</label>

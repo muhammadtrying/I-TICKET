@@ -71,8 +71,10 @@
             <tbody>
             <% for (Hall hall : halls) { %>
             <tr>
-                <th scope="row"><%= i++ %></th>
-                <td><%= hall.getName() %></td>
+                <th scope="row"><%= i++ %>
+                </th>
+                <td><%= hall.getName() %>
+                </td>
                 <td><a href="hallUpdate.jsp?id=<%=hall.getId()%>">Update🔄</a></td>
             </tr>
             <% } %>

@@ -12,7 +12,10 @@ import uz.muhammadtrying.iticketproject.entity.Purchase;
 import uz.muhammadtrying.iticketproject.entity.Seat;
 import uz.muhammadtrying.iticketproject.entity.User;
 import uz.muhammadtrying.iticketproject.entity.enums.Status;
-import uz.muhammadtrying.iticketproject.repo.*;
+import uz.muhammadtrying.iticketproject.repo.PurchaseRepo;
+import uz.muhammadtrying.iticketproject.repo.SeatRepo;
+import uz.muhammadtrying.iticketproject.repo.SessionRepo;
+import uz.muhammadtrying.iticketproject.repo.UserRepo;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -89,6 +92,7 @@ public class AuthServlet extends HttpServlet {
 
     private void makeAPurchase(HttpServletRequest req) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d hh:mm a");
+        User currentUser = (User) req.getSession().getAttribute("currentUser");
         SeatRepo seatRepo = new SeatRepo();
         SessionRepo sessionRepo = new SessionRepo();
         UUID seatId = (UUID) req.getSession().getAttribute("seatId");
@@ -101,6 +105,7 @@ public class AuthServlet extends HttpServlet {
 
         Purchase purchase = Purchase.builder()
                 .hall(chosenSession.getHall().getName())
+                .user(currentUser)
                 .movie(chosenSession.getMovie().getName())
                 .sessionTime(chosenSession.getTime().format(formatter))
                 .price(200)

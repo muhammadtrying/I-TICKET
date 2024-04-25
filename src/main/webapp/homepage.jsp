@@ -58,7 +58,13 @@
             <div class="advertising">
                 <h3 class="text-center"><%=movie.getName()%>
                 </h3>
-                <p><img width="220" src="photo.jpeg" alt=""></p>
+                <%if (movie.getAttachment() == null) {%>
+                <p><img width="220" src="photo.jpeg"
+                        alt="photo.jpeg"></p>
+                <% } else { %>
+                <p><img width="220" src="${pageContext.request.contextPath}/file?id=<%=movie.getAttachment().getId()%>"
+                        alt="photo.jpeg"></p>
+                <% } %>
                 <a href="session.jsp?chosenMovie=<%=movie.getId()%>" class="btn btn-primary btn-block">Buy Ticket</a>
             </div>
         </div>

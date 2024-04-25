@@ -1,6 +1,7 @@
 package uz.muhammadtrying.iticketproject.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,15 +23,18 @@ public class Purchase extends BaseEntity {
     private Integer price;
     private String sessionTime;
     private String hall;
+    @ManyToOne
+    private User user;
 
     @Builder
 
-    public Purchase(UUID id, LocalDateTime purchaseDate, String movie, Integer price, String sessionTime, String hall) {
+    public Purchase(UUID id, LocalDateTime purchaseDate, String movie, Integer price, String sessionTime, String hall, User user) {
         super(id);
         this.purchaseDate = purchaseDate;
         this.movie = movie;
         this.price = price;
         this.sessionTime = sessionTime;
         this.hall = hall;
+        this.user = user;
     }
 }

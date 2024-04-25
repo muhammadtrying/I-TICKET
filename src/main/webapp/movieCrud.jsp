@@ -75,6 +75,14 @@
             <tr>
                 <th scope="row"><%= i++ %>
                 </th>
+                <%if (movie.getAttachment() == null) {%>
+                <td><img width="60" src="photo.jpeg"
+                         alt="photo"></td>
+                <% } else {%>
+                <td><img width="60" src="${pageContext.request.contextPath}/file?id=<%=movie.getAttachment().getId()%>"
+                         alt="photo.jpeg"></td>
+                <% }
+                %>
                 <td><%= movie.getName() %>
                 </td>
                 <td><a href="movieUpdate.jsp?id=<%=movie.getId()%>">Update🔄</a></td>

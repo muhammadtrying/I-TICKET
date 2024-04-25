@@ -15,6 +15,10 @@ public class HallServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HallRepo hallRepo = new HallRepo();
+        if (req.getParameter("name").isBlank()) {
+            resp.sendRedirect("/hallCrud.jsp");
+            return;
+        }
         if (req.getParameter("function") != null && req.getParameter("function").equals("update")) {
             Hall hall = hallRepo.findById(UUID.fromString(req.getParameter("id")));
             hallRepo.begin();

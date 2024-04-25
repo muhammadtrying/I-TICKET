@@ -1,6 +1,5 @@
 package uz.muhammadtrying.iticketproject.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import lombok.Builder;
@@ -14,15 +13,15 @@ import java.util.UUID;
 @Entity
 @Data
 @NoArgsConstructor
-public class Movie extends BaseEntity {
-    private String name;
+public class AttachmentContent extends BaseEntity {
     @OneToOne
-    private Attachment attachment;
+    protected Attachment attachment;
+    private byte[] content;
 
     @Builder
-    public Movie(UUID id, String name, Attachment attachment) {
+    public AttachmentContent(UUID id, Attachment attachment, byte[] content) {
         super(id);
-        this.name = name;
         this.attachment = attachment;
+        this.content = content;
     }
 }

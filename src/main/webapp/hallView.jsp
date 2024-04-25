@@ -29,8 +29,9 @@
     Hall hall = chosenSession.getHall();
     Movie movie = chosenSession.getMovie();
     SeatRepo seatRepo = new SeatRepo();
-    List<Seat> seatsInChosenHall = new ArrayList<>(seatRepo.findAll().stream().filter(seat -> seat.getHall().getId().equals(hall.getId())).toList());
-    UUID chosenMovieId= UUID.fromString( request.getParameter("chosenMovieId"));
+    List<Seat> seatsInChosenHall = new ArrayList<>(seatRepo.findAll().stream()
+            .filter(seat -> seat.getSession().getId().equals(chosenSession.getId())).toList());
+    UUID chosenMovieId = UUID.fromString(request.getParameter("chosenMovieId"));
 %>
 <div class="container mt-5">
     <div class="row justify-content-center">

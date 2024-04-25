@@ -18,13 +18,13 @@ public class Seat extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
     @ManyToOne(cascade = CascadeType.ALL)
-    private Hall hall;
+    private Session session;
 
     @Builder
-    public Seat(UUID id, String seatNumber, Status status, Hall hall) {
+    public Seat(UUID id, String seatNumber, Status status, Session session) {
         super(id);
         this.seatNumber = seatNumber;
         this.status = status;
-        this.hall = hall;
+        this.session = session;
     }
 }
